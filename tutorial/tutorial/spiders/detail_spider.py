@@ -4,12 +4,12 @@ import scrapy
 class DetailSpider(scrapy.Spider):
     name = "detail"
     start_urls = [
-        'https://kharkov.internet-bilet.ua/#all-events',
+        'http://ekt2.com/EKT/Car_Service/Battery_Charging_AND_Maintenance/Battery_Car/',
     ]
 
     def parse(self, response):
     	#follow link to event page
-    	for href in response.css('div.event-title > a::attr(href)'):
+    	for href in response.css('div.right-details > a::attr(href)'):
     		yield response.follow(href, self.parse_detail)
     	
 
@@ -18,8 +18,9 @@ class DetailSpider(scrapy.Spider):
             return response.css(query).get(default='').strip()
 
         yield {
-            'name': extract_with_css('h1.event-title::text'),
+            'name': extract_with_css('div.title::text'),
             'date': extract_with_css('div.date-bar > div.date::text'),
+            'image': extract_with_css('div.img > a::attr(href)'),
         }	
 
 
