@@ -19,11 +19,12 @@ class DetailSpider(scrapy.Spider):
 
         yield {
             'name': extract_with_css('div.p-prod-r > div.title > span::text'),
-            'price': extract_with_css('div.date-bar > div.date::text'),
-            'image': extract_with_css('div.img > a::attr(href)'),
+            'price': extract_with_css('span#ContentPlaceHolderMain_C001_EKTProductsDetails1_lblRetailPrice::text'),
+            'image_link': extract_with_css('img.zoom-tiny-image::attr(src)'),
         }	
 
 
 #response.css('img.zoom-tiny-image::attr(src)')[0].get() image detail getter
 #http://ekt2.com/Sitefinity/WebsiteTemplates/WebGreen/App_Themes/WebGreen/Images/Products/35000/25 BATTERY ACID CAR 12V  40AH VARTA.jpg //full image link
 #response.css('span#ContentPlaceHolderMain_C001_EKTProductsDetails1_lblRetailPrice::text').get() //price getter
+# start scrape / scrapy crawl detail -o batt_deatil.json
