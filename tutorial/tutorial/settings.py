@@ -70,7 +70,7 @@ ITEM_PIPELINES = {
 #    'tutorial.pipelines.TutorialPipeline': 300,
 }
 #Image store For the Images Pipeline
-IMAGES_STORE = '/home/fan/Documents/scraptest/tutorial'
+IMAGES_STORE = 'images'
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://docs.scrapy.org/en/latest/topics/autothrottle.html
 #AUTOTHROTTLE_ENABLED = True
