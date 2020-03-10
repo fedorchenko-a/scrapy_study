@@ -1,17 +1,21 @@
 import scrapy
 from urllib.parse import urljoin
 
-class DetailSpider(scrapy.Spider):
-    name = "detail"
+class ImageSpider(scrapy.Spider):
+    name = "image"
     start_urls = [
-        'https://www.ekt2.com/EKT/Home-Automation/Sonoff',
+        'https://3v3.com.ua/category_7329_show_all.html',
     ]
     
 
     def parse(self, response):
-    	#follow link to event page
-    	for href in response.css('div.r53 a::attr(href)'):
-    		yield response.follow(href, self.parse_detail)
+    	##follow link to event page
+    	for info in response.css('div.hd1 td.bf a::attr(href)'):
+    		yield response.follow(info, self.parse_detail)
+
+
+
+            #response.follow(href, self.parse_detail)
     	
 
     def parse_detail(self, response):
@@ -26,12 +30,13 @@ class DetailSpider(scrapy.Spider):
             'image_urls': [urljoin('https://ekt2.com/', extract_with_css('div.c23 img::attr(src)'))],
         }'''	
         yield {
-            'name': response.css('div.c58 p::text').get(),
-            'original_number': response.css('div.c58 > div.item-info span::text')[3].get(),
-            'reference': response.css('div.c58 > div.item-info span::text')[4].get(),
-            'product_information': response.css('div.c58 > div.item-info p::text')[6].get(),
-            'price': response.css('div.c58 > div.item-info span::text')[2].get(),
-            'image_urls': [urljoin('https://www.ekt2.com', url) for url in response.css('div.c23 img::attr(src)').getall()],
+            'name': response.css('td.hd2::text').get(),
+            #'original_number': response.css('div.c58 > div.item-info span::text')[3].get(),
+            'reference': response.css('td.buyButton table tr td b::text')[2].get(),
+            #'product_information': response.css('div.c58 > div.item-info p::text')[6].get(),
+            'price': response.css('td.price span.fromPrice2 b::text').get(),
+            'image_urls': [urljoin('https://3v3.com.ua', response.css('td.imboxl a::attr(href)').get())],
+            #'image_urls': [urljoin('https://www.ekt2.com', url) for url in response.css('div.c23 img::attr(src)').getall()],
         }
 
 #response.css('img.zoom-tiny-image::attr(src)')[0].get() image detail getter

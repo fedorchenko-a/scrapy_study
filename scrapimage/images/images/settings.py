@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 FEED_EXPORT_ENCODING = 'utf-8'
-
-# Scrapy settings for tutorial project
+# Scrapy settings for images project
 #
 # For simplicity, this file contains only settings considered important or
 # commonly used. You can find more settings consulting the documentation:
@@ -10,14 +9,14 @@ FEED_EXPORT_ENCODING = 'utf-8'
 #     https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 
-BOT_NAME = 'tutorial'
+BOT_NAME = 'images'
 
-SPIDER_MODULES = ['tutorial.spiders']
-NEWSPIDER_MODULE = 'tutorial.spiders'
+SPIDER_MODULES = ['images.spiders']
+NEWSPIDER_MODULE = 'images.spiders'
 
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
-#USER_AGENT = 'tutorial (+http://www.yourdomain.com)'
+#USER_AGENT = 'images (+http://www.yourdomain.com)'
 
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = True
@@ -48,13 +47,13 @@ ROBOTSTXT_OBEY = True
 # Enable or disable spider middlewares
 # See https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 #SPIDER_MIDDLEWARES = {
-#    'tutorial.middlewares.TutorialSpiderMiddleware': 543,
+#    'images.middlewares.ImagesSpiderMiddleware': 543,
 #}
 
 # Enable or disable downloader middlewares
 # See https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #DOWNLOADER_MIDDLEWARES = {
-#    'tutorial.middlewares.TutorialDownloaderMiddleware': 543,
+#    'images.middlewares.ImagesDownloaderMiddleware': 543,
 #}
 
 # Enable or disable extensions
@@ -66,12 +65,12 @@ ROBOTSTXT_OBEY = True
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
-	#'scrapy.pipelines.images.ImagesPipeline': 1,
-	'tutorial.pipelines.MyImagesPipeline':10,   
-#    'tutorial.pipelines.TutorialPipeline': 300,
+	'scrapy.pipelines.images.ImagesPipeline': 1,
+	#'images.pipelines.MyImagesPipeline':11,
+#    'images.pipelines.ImagesPipeline': 300,
 }
-#Image store For the Images Pipeline
-IMAGES_STORE = 'images'
+
+IMAGES_STORE = 'imagesave'
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://docs.scrapy.org/en/latest/topics/autothrottle.html
 #AUTOTHROTTLE_ENABLED = True
